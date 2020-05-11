@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{A27B0870-692B-5BA0-8D15-5AFDCA269F36}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gamemanager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Player.cs" Line="67" Column="6" />
+      <File FileName="Assets/Scripts/Laser.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="13" Column="6" />
+      <File FileName="Assets/Scripts/SpawnManager.cs" Line="80" Column="6" />
+      <File FileName="Assets/Scripts/PowerUp.cs" Line="45" Column="1" />
+      <File FileName="Assets/Scripts/UIManager.cs" Line="49" Column="69" />
+      <File FileName="Assets/Scripts/Gamemanager.cs" Line="7" Column="13" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Space Shooter Pro" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Gamemanager.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ddaa69c2-fed7-4d9c-9582-09b5729fe084" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

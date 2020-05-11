@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _SpeedPowerUp;
     [SerializeField]
+    private GameObject _newPlayer;
+    [SerializeField]
     private GameObject _ShieldPowerUp;
 
     [SerializeField]
@@ -38,7 +40,7 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject newEnemy = Instantiate(_EnemyPrefab, new Vector3(Random.Range(-4, 3.4f), 4, 0), Quaternion.identity);
             newEnemy.transform.parent = _EnemyContainer.transform;
-            yield return new WaitForSeconds(Random.Range(3,8));
+            yield return new WaitForSeconds(Random.Range(2,5));
         }
     }
 
@@ -68,7 +70,7 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject newShieldPowerUp = Instantiate(_ShieldPowerUp, new Vector3(Random.Range(-4, 3.4f), 4, 0), Quaternion.identity);
             newShieldPowerUp.transform.parent = _PowerUpContainer.transform;
-            yield return new WaitForSeconds(Random.Range(5, 12));
+            yield return new WaitForSeconds(Random.Range(20, 25));
         }
     }
 

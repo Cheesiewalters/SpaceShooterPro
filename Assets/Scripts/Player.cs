@@ -13,27 +13,28 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _TripleShotPrefab;
-    
+    [SerializeField]
+    private GameObject _ShieldVisualiser;
+
     private bool _IsTripleShotActive;
     private bool _isSpeedPowerUpActive;
     private bool _isShieldPowerUpActive;
-
-
     private SpawnManager _spawnManager;
     private Enemy _enemy;
-
     [SerializeField]
     private float _fireRate = 0.5f;
     private float _nextFire = 0.0f;
-
     [SerializeField]
     private int _lives = 3;
+    [SerializeField]
+    private int _score = 0;
     
 
     void Start()
     {
         transform.position = new Vector3(0,-3,0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _ShieldVisualiser.SetActive(false);
     }
 
     // Update is called once per frame
@@ -126,12 +127,14 @@ public class Player : MonoBehaviour
     public void ShieldPowerUpActive()
     {
         _isShieldPowerUpActive = true;
+        _ShieldVisualiser.SetActive(true);
         StartCoroutine(ShieldPowerDownRoutine());
     }
 
     IEnumerator ShieldPowerDownRoutine()
     {
         yield return new WaitForSeconds(10.0f);
+        _ShieldVisualiser.SetActive(true);
         _isShieldPowerUpActive = false;  
     }
 
@@ -145,5 +148,20 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _IsTripleShotActive = false;
+    }
+
+    public void AddScore()
+    {
+        _score += 10;
+    }
+
+    public int GetScore()
+    {
+        return _score;
+    }
+
+    public int GetLives()
+    {
+        return _lives;
     }
 }
