@@ -8,10 +8,16 @@ public class Enemy : MonoBehaviour
     private float _speed = 1.5f;
     private Player _player;
     private Animator _animator;
+    [SerializeField]
+    public AudioSource _ExplosionSource;
+    [SerializeField]
+    public AudioClip _ExplosionAudioClip;
 
     // Start is called before the first frame update
     void Start()
     {
+        _ExplosionSource = GetComponent<AudioSource>();
+        _ExplosionSource.clip = _ExplosionAudioClip;
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = GetComponent<Animator>();
     }
@@ -37,8 +43,9 @@ public class Enemy : MonoBehaviour
                 player.Damage();
             }
             _animator.SetTrigger("OnEnemyDeath");
+            _ExplosionSource.Play();
             _speed = 0;
-            Destroy(gameObject, 2.3f);
+            Destroy(gameObject, 2.0f);
         }
         else if(other.tag == "Laser")
         {
@@ -49,7 +56,8 @@ public class Enemy : MonoBehaviour
             }
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
-            Destroy(gameObject,2.3f);
+            _ExplosionSource.Play();
+            Destroy(gameObject,2.0f);
         }
     }
 }

@@ -22,7 +22,18 @@ public class SpawnManager : MonoBehaviour
 
     private bool _stopSpawning = false;
 
+    
+
     void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+    }
+
+    public void StartSpawning()
     {
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnTripleShotPowerupRoutine());
@@ -30,12 +41,9 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnShieldPowerUpRoutine());
     }
 
-    void Update()
-    {
-    }
-
     IEnumerator SpawnEnemy()
     {
+        yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
             GameObject newEnemy = Instantiate(_EnemyPrefab, new Vector3(Random.Range(-4, 3.4f), 4, 0), Quaternion.identity);

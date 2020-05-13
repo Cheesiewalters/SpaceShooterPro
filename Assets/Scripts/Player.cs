@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour
 {
     [SerializeField]
@@ -15,6 +16,10 @@ public class Player : MonoBehaviour
     private GameObject _TripleShotPrefab;
     [SerializeField]
     private GameObject _ShieldVisualiser;
+    [SerializeField]
+    private GameObject _leftEngine;
+    [SerializeField]
+    private GameObject _RightEngine;
 
     private bool _IsTripleShotActive;
     private bool _isSpeedPowerUpActive;
@@ -28,13 +33,23 @@ public class Player : MonoBehaviour
     private int _lives = 3;
     [SerializeField]
     private int _score = 0;
-    
+    [SerializeField]
+    public AudioSource _LaserSound;
+    [SerializeField]
+    public AudioClip _LaserAudioClip;
+    [SerializeField]
+    public AudioClip _PowerupClip;
+
 
     void Start()
     {
+
+        _LaserSound = GetComponent<AudioSource>();
+        _LaserSound.clip = _LaserAudioClip;
         transform.position = new Vector3(0,-3,0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _ShieldVisualiser.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -63,6 +78,7 @@ public class Player : MonoBehaviour
                     transform.position + new Vector3(0, 0.5f, 0),
                     Quaternion.identity);
             }
+            _LaserSound.Play();
         }
     }
 
@@ -96,7 +112,15 @@ public class Player : MonoBehaviour
         if (_isShieldPowerUpActive == false)
         {
             _lives--;
-            if (_lives < 1)
+            if(_lives == 2)
+            {
+                _leftEngine.SetActive(true);
+            }
+            else if(_lives == 1)
+            {
+                _RightEngine.SetActive(true);
+            }
+            else
             {
                 if (_spawnManager != null)
                 {
@@ -113,12 +137,16 @@ public class Player : MonoBehaviour
 
     public void TripleShopActive()
     {
+        _LaserSound.clip = _PowerupClip;
+        _LaserSound.Play();
         _IsTripleShotActive = true;
         StartCoroutine(TripleShotPowerDownRoutine());
     }
 
     public void SpeedPowerUpActive()
     {
+        _LaserSound.clip = _PowerupClip;
+        _LaserSound.Play();
         _isSpeedPowerUpActive = true;
         StartCoroutine(SpeedPowerDownRoutine());
 
@@ -126,6 +154,8 @@ public class Player : MonoBehaviour
 
     public void ShieldPowerUpActive()
     {
+        _LaserSound.clip = _PowerupClip;
+        _LaserSound.Play();
         _isShieldPowerUpActive = true;
         _ShieldVisualiser.SetActive(true);
         StartCoroutine(ShieldPowerDownRoutine());
